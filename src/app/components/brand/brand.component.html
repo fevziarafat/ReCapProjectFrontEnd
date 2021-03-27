@@ -1,14 +1,19 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Marka Adı</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let brand of brands">
-      <td>{{ brand.id }}</td>
-      <td>{{ brand.brandName }}</td>
-    </tr>
-  </tbody>
-</table>
+<ul class="list-group">
+  <li
+    href="#"
+    class="list-group-item list-group-item-action active"
+    aria-disabled="true"
+  >
+    Markalar
+  </li>
+  <li
+    (click)="setCurrentBrand(brand.brandName)"
+    routerLink="/cars/GetCarsByBrandId/{{ brand.id }}"
+    *ngFor="let brand of brands"
+    [class]="getCurrentBrandClass(brand.brandName)"
+  >
+    {{ brand.brandName }}
+  </li>
+
+  <!-- <h5 *ngIf="currentBrand">{{currentBrand}}</h5> -->
+</ul>

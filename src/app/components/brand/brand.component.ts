@@ -11,6 +11,7 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   dataLoaded = false;
   filterText = '';
+  currentBrand: Brand;
   constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
@@ -23,5 +24,19 @@ export class BrandComponent implements OnInit {
       this.brands = response.data;
       this.dataLoaded = true;
     });
+  }
+  // tslint:disable-next-line:typedef
+  setCurrentBrand(brand: Brand) {
+    this.currentBrand = brand;
+  }
+
+  // tslint:disable-next-line:typedef
+  getCurrentBrandClass(brand: Brand) {
+    // tslint:disable-next-line:no-conditional-assignment
+    if (brand === this.currentBrand) {
+      return 'list-group-item list-group-item-action active';
+    } else {
+      return 'list-group-item list-group-item-action';
+    }
   }
 }

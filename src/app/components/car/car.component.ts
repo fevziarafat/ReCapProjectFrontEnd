@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
-import { CarDetail } from 'src/app/models/carDetail';
+import { Car } from 'src/app/models/car';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 
@@ -10,17 +11,31 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: CarDetail[] = [];
+  cars: Car[] = [];
   brands: Brand[] = [];
+  sayi: any = [];
+  currentCar: Car;
+
   dataLoaded = false;
+
   constructor(
     private carService: CarService,
-    private brandService: BrandService
+    private brandService: BrandService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.getCars();
-
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.brandId) {
+        this.getCarsByBrand(params.brandId);
+      } else if (params.colorId) {
+        this.getCarsByColor(params.colorId);
+      } else if (params.id) {
+        this.getCarById(params.id);
+      } else {
+        this.getCars();
+      }
+    });
   }
 
   // tslint:disable-next-line:typedef
@@ -30,9 +45,34 @@ export class CarComponent implements OnInit {
     });
   }
   // tslint:disable-next-line:typedef
+  getCarsByBrand(Id: number) {
+    this.carService.getCarsByBrand(Id).subscribe((response) => {
+      this.cars = response.data;
+    });
+  }
+  // tslint:disable-next-line:typedef
+  getCarById(id: number) {
+    this.carService.getCarById(id).subscribe((response) => {
+      this.cars = response.data;
+      console.log(id);
+    });
+  }
+  // tslint:disable-next-line:typedef
+  // setCurrentCar(car: Car) {
+  //   this.currentCar = car.Id;
+  // }
+
+  // tslint:disable-next-line:typedef
   // getBrands() {
   //   this.brandService.getBrands().subscribe((response) => {
   //     this.brands = response.data;
   //   });
   // }
+
+  // tslint:disable-next-line:typedef
+  getCarsByColor(Id: number) {
+    this.carService.getCarsByColor(Id).subscribe((response) => {
+      this.cars = response.data;
+    });
+  }
 }
