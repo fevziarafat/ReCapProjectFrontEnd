@@ -1,5 +1,5 @@
 export interface CarDetail {
-  id: number;
+  carId: number;
   carName: string;
   brandId: number;
   brandName: string;
@@ -8,4 +8,6 @@ export interface CarDetail {
   modelYear: number;
   dailyPrice: number;
   description: string;
+  imagePath: string;
+
 }

@@ -10,20 +10,23 @@
   </thead>
   <tbody>
     <tr *ngFor="let carImage of carImages">
-   <td>{{ carImage.id }}</td>
+      <td>{{ carImage.id }}</td>
       <td>
         <img
-        class="media-object"
-           [src]="getbypassSecurityTrustUrl(carImage)"
-           style="max-width:200px"
-
+          class="media-object"
+          [src]="getbypassSecurityTrustUrl(carImage)"
+          style="max-width: 200px"
         />
-
-
       </td>
 
       <td>{{ carImage.date }}</td>
-      <td><a href="#" class="link-primary">Detay</a></td>
+      <td>
+        <a
+          routerLink="/carImage/getCarImagesById/{{ carImage.carId }}"
+          class="link-primary"
+          >Detay</a
+        >
+      </td>
     </tr>
   </tbody>
 </table>

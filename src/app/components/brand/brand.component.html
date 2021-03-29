@@ -8,7 +8,7 @@
   </li>
   <li
     (click)="setCurrentBrand(brand.brandName)"
-    routerLink="/cars/GetCarsByBrandId/{{ brand.id }}"
+    routerLink="cars/GetCarListWithBrand/{{ brand.id }}"
     *ngFor="let brand of brands"
     [class]="getCurrentBrandClass(brand.brandName)"
   >

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car-image',
@@ -11,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CarImageComponent implements OnInit {
   constructor(
     private carImageService: CarImageService,
+    private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {}
   carImages: CarImage[] = [];
@@ -18,7 +20,15 @@ export class CarImageComponent implements OnInit {
   imageAddress: any;
 
   ngOnInit(): void {
-    this.getCarImage();
+    this.activatedRoute.params.subscribe(params => {
+      if (params.id){
+        this.getCarImagesById(params.id);
+      }
+      else{
+        this.getCarImage();
+      }
+    });
+
   }
   // tslint:disable-next-line:typedef
   getbypassSecurityTrustUrl(image: CarImage) {
@@ -36,7 +46,12 @@ export class CarImageComponent implements OnInit {
       'http://127.0.0.1:8887/mustafa karagüllü.png'
     ));
   }
-
+  // tslint:disable-next-line:typedef
+  getCarImagesById(id: number) {
+    this.carImageService.getCarImagesById(id).subscribe((response) => {
+      this.carImages = response.data;
+    });
+  }
 
   // tslint:disable-next-line:typedef
   // getCarImageUrl() {

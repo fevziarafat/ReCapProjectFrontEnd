@@ -7,7 +7,7 @@
     Renkler
   </li>
   <li
-    routerLink="/cars/GetCarsByColorId/{{ color.id }}"
+    routerLink="/cars/GetCarListWithColor/{{ color.id }}"
     (click)="setCurrentColor(color.colorName)"
     *ngFor="let color of colors"
     [class]="getCurrentColorClass(color.colorName)"

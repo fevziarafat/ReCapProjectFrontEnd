@@ -9,14 +9,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{ car.id }}</td>
-      <td>{{ car.brandId }}</td>
-      <td>{{ car.colorId }}</td>
+    <tr *ngFor="let car of carList">
+      <td>{{ car.carId }}</td>
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName }}</td>
       <td>{{ car.dailyPrice }}</td>
       <td>
-       <a routerLink="/cars/GetCarById/{{car.id}}" class="link-primary">Detay</a>
+        <a
+          routerLink="/cars/GetCarDetailsWithImage/{{ car.carId }}"
+          class="link-primary"
+          >Detay</a
+        >
       </td>
+      <td></td>
     </tr>
   </tbody>
 </table>
