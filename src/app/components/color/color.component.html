@@ -1,3 +1,15 @@
+<div class="mb-3">
+  <label for="exampleFormControlInputcolor" class="form-label"
+    >Renklerde Arama Yap</label
+  >
+  <input
+    type="email"
+    class="form-control"
+    [(ngModel)]="filterText"
+    id="exampleFormControlInputcolor"
+    placeholder="Renk kelimesini yazınız"
+  />
+</div>
 <ul class="list-group">
   <li
     href="#"
@@ -9,7 +21,7 @@
   <li
     routerLink="/cars/GetCarListWithColor/{{ color.id }}"
     (click)="setCurrentColor(color.colorName)"
-    *ngFor="let color of colors"
+    *ngFor="let color of colors |filterPipeColors:filterText"
     [class]="getCurrentColorClass(color.colorName)"
   >
     {{ color.colorName }}

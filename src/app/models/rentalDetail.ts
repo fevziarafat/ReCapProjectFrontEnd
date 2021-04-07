@@ -1,11 +1,11 @@
 export interface RentalDetail {
-  BrandName: string;
-  FirstName: string;
-  LastName: string;
-  ReturnDate: string;
-  CustomerId: number;
-  RentDate: string;
-  CarId: number;
-  RentalId: number;
-  ImagePath: string;
+  brandName: string;
+  firstName: string;
+  lastName: string;
+  returnDate: string;
+  customerId: number;
+  rentDate: string;
+  carId: number;
+  rentalId: number;
+  imagePath: string;
 }

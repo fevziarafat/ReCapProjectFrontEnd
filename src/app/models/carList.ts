@@ -1,12 +1,12 @@
 export interface CarList {
-  BrandName: string;
-  CarName: string;
-  ColorName: string;
-  Description: string;
-  ModelYear: number;
-  BrandId: number;
-  CarId: number;
-  ColorId: number;
-  DailyPrice: number;
-  ImagePath: string;
+  brandName: string;
+  carName: string;
+  colorName: string;
+  description: string;
+  modelYear: number;
+  brandId: number;
+  carId: number;
+  colorId: number;
+  dailyPrice: number;
+  imagePath: string;
 }

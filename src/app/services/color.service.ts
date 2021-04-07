@@ -8,7 +8,7 @@ import { ListResponseModel } from '../models/listResponseModel';
   providedIn: 'root',
 })
 export class ColorService {
-  apiUrl = 'https://localhost:44312/api/';
+  apiUrl = 'https://localhost:5001/api/';
 
   constructor(private httpClient: HttpClient) {}
 

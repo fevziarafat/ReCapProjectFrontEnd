@@ -22,6 +22,9 @@ export class CarComponent implements OnInit {
   brands: Brand[] = [];
   sayi: any = [];
   carList: CarList[] = [];
+  filterText = '';
+  listCarByColorText = '';
+  listCarByBrandText = '';
 
   dataLoaded = false;
   class: string;
@@ -31,6 +34,10 @@ export class CarComponent implements OnInit {
         this.getCarListWithBrand(params.brandId);
       } else if (params.colorId) {
         this.getCarListWithColor(params.colorId);
+      } else if (params.brandName) {
+        this.listCarByBrand(params.brandName);
+      } else if (params.colorName) {
+        this.listCarByColor(params.colorName);
       } else if (params.carId) {
         this.getCarListWithImage(params.carId);
       } else {
@@ -59,6 +66,20 @@ export class CarComponent implements OnInit {
   // tslint:disable-next-line:typedef
   getCarListWithImage(Id: number) {
     this.carService.getCarListWithImage(Id).subscribe((response) => {
+      this.carList = response.data;
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  listCarByColor(colorName: string) {
+    colorName = colorName.trim();
+    this.carService.getCarListWithColorName(colorName).subscribe((response) => {
+      this.carList = response.data;
+    });
+  }
+  // tslint:disable-next-line:typedef
+  listCarByBrand(brandName: string) {
+    this.carService.getCarListWithBrandName(brandName).subscribe((response) => {
       this.carList = response.data;
     });
   }

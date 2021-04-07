@@ -39,16 +39,221 @@
       <th scope="col">Kiralama Ücreti</th>
       <th scope="col">Açıklama</th>
       <th scope="col">Model</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let car of carList; let i = index">
-      <td *ngIf="i== 0" >{{ car.carName }}</td>
-      <td *ngIf="i== 0">{{ car.brandName }}</td>
-      <td *ngIf="i== 0">{{ car.colorName }}</td>
+      <td *ngIf="i == 0">{{ car.carName }}</td>
+      <td *ngIf="i == 0">{{ car.brandName }}</td>
+      <td *ngIf="i == 0">{{ car.colorName }}</td>
       <td *ngIf="i == 0">{{ car.dailyPrice }}</td>
       <td *ngIf="i == 0">{{ car.description }}</td>
       <td *ngIf="i == 0">{{ car.modelYear }}</td>
+      <td *ngIf="i == 0">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"
+        >
+          Kirala
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Araba Kirala</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label"
+                      >Müşteri seçiniz</label
+                    >
+                    <select
+                      (ngModelChange)="setNewUser($event)"
+                      [(ngModel)]="rentACarCustomer"
+                      name="rentACarCustomerName"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option
+                        *ngFor="let customer of customers"
+                        [ngValue]="customer"
+                      >
+                        {{ customer.companyName }}
+                      </option>
+                    </select>
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">brandName</th>
+                          <th scope="col">firstName</th>
+                          <th scope="col">returnDate</th>
+                          <th scope="col">rentDate</th>
+                          <th scope="col">rentalId</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let rentalDetail of rentalDetails;
+                            let i = index
+                          "
+                        >
+                          <td *ngIf="rentalDetail.carId == car.carId">
+                            {{ rentalDetail.brandName }}
+                          </td>
+                          <td *ngIf="rentalDetail.carId == car.carId">
+                            {{ rentalDetail.firstName }}
+                          </td>
+                          <td *ngIf="rentalDetail.carId == car.carId">
+                            {{ rentalDetail.returnDate }}
+                          </td>
+                          <td *ngIf="rentalDetail.carId == car.carId">
+                            {{ rentalDetail.rentDate }}
+                          </td>
+                          <td *ngIf="rentalDetail.carId == car.carId">
+                            {{ rentalDetail.rentalId }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <dl-date-time-picker
+                          startView="day"
+                          maxView="year"
+                          minView="day"
+                          minuteStep="1"
+                          [(ngModel)]="selectedDateStart"
+                          name="start"
+                        >
+                        </dl-date-time-picker>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-3">
+                        <dl-date-time-picker
+                          startView="day"
+                          maxView="year"
+                          minView="day"
+                          minuteStep="1"
+                          [(ngModel)]="selectedDateFinish"
+                          name="finish"
+                        >
+                        </dl-date-time-picker>
+                      </div>
+                      <div *ngIf="selectedDateStart" class="col-md-3">
+                        <button
+                          *ngIf="selectedDateFinish"
+                          (click)="
+                            diff_days(selectedDateStart, selectedDateFinish)
+                          "
+                          type="button"
+                          class="btn btn-primary"
+                        >
+                          Hesapla <br />
+                        </button>
+                        <label
+                          *ngIf="resultDate"
+                          for="message-text"
+                          class="col-form-label"
+                          >Araç {{ rentACarCustomer.companyName }} adlı
+                          müşteriye toplamda {{ resultDate }} gün kiralacaktır.
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <label
+                          for="creditcart-name-surname"
+                          class="col-form-label"
+                          >Kart üzerindeki isim
+                        </label>
+                        <input
+                        [(ngModel)]="cartName" name="cartName"
+                          type="text"
+                          class="form-control"
+                          id="creditcart-name-surname"
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label
+                          for="creditcart-name-surname"
+                          class="col-form-label"
+                          >Kart numarası
+                        </label>
+                        <input
+                        [(ngModel)]="cartNumber" name="cartNumber"
+                          type="text"
+                          class="form-control"
+                          id="creditcart-number"
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label
+                          for="creditcart-expire-date"
+                          class="col-form-label"
+                          >Son Kullanma Tarihi
+                        </label>
+                        <input
+                        [(ngModel)]="cartExpireMonth" name="cartExpireMonth"
+                          type="text"
+                          class="form-control"
+                          id="creditcart-expire-date"
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <label for="creditcart-cvv" class="col-form-label"
+                          >CVV
+                        </label>
+                        <input
+                        [(ngModel)]="cartCvv" name="cartCvv"
+                          type="text"
+                          class="form-control"
+                          id="creditcart-cvv"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  (click)=commit()
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Ödeme Yap
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  İptal
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

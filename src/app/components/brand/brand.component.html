@@ -1,3 +1,15 @@
+<div class="mb-3">
+  <label for="exampleFormControlInputbrand" class="form-label"
+    >Markalarda Arama Yap</label
+  >
+  <input
+    type="email"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="exampleFormControlInputbrand"
+    placeholder="Arama kelimesini yazınız"
+  />
+</div>
 <ul class="list-group">
   <li
     href="#"
@@ -9,7 +21,7 @@
   <li
     (click)="setCurrentBrand(brand.brandName)"
     routerLink="cars/GetCarListWithBrand/{{ brand.id }}"
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands | filterPipeBrands: filterText"
     [class]="getCurrentBrandClass(brand.brandName)"
   >
     {{ brand.brandName }}

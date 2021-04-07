@@ -1,3 +1,66 @@
+<div class="mb-3">
+  <label for="exampleFormControlInputcar" class="form-label"
+    >Arabaların içinde arama yap</label
+  >
+  <input
+    type="email"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="exampleFormControlInputcar"
+    placeholder="Aranacak arabayı yazınız"
+  />
+  <div *ngIf="filterText.length > 2">{{ filterText }} aradınız</div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <select
+      [(ngModel)]="listCarByColorText"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option
+        *ngFor="let car of carList | filterPipeColorDropdown"
+        value=" {{ car }}"
+      >
+        {{ car }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button
+      routerLink="/cars/GetCarListWithColorName/{{ listCarByColorText }}"
+      type="button"
+      class="btn btn-primary"
+    >
+      Filtrele
+    </button>
+  </div>
+  <div class="col-md-3">
+    <select
+      [(ngModel)]="listCarByBrandText"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option
+        *ngFor="let car of carList | filterPipeBrandDropdown"
+        value="{{ car }}"
+      >
+        {{ car }}
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button
+      routerLink="/cars/GetCarListWithBrandName/{{ listCarByBrandText }}"
+      type="button"
+      class="btn btn-primary"
+    >
+      Filtrele
+    </button>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -5,15 +68,17 @@
       <th scope="col">Marka Adı</th>
       <th scope="col">Renk Adı</th>
       <th scope="col">Kiralama Ücreti</th>
+      <th scope="col">Kiralama Ücreti Kasko dahil</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of carList">
-      <td>{{ car.carId }}</td>
+    <tr *ngFor="let car of carList | filterPipe: filterText">
+      <td>{{ car.carName }}</td>
       <td>{{ car.brandName }}</td>
       <td>{{ car.colorName }}</td>
-      <td>{{ car.dailyPrice }}</td>
+      <td>{{ car.dailyPrice | currency }}</td>
+      <td>{{ car.dailyPrice | varAdded: 10 | currency }}</td>
       <td>
         <a
           routerLink="/cars/GetCarDetailsWithImage/{{ car.carId }}"

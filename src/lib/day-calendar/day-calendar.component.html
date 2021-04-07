@@ -1,0 +1,53 @@
+<div *ngIf="currentCalendarMode ===  CalendarMode.Day" class="dp-day-calendar-container">
+  <dp-calendar-nav
+      (onGoToCurrent)="goToCurrent()"
+      (onLabelClick)="toggleCalendarMode(CalendarMode.Month)"
+      (onLeftNav)="onLeftNavClick()"
+      (onRightNav)="onRightNavClick()"
+      [isLabelClickable]="componentConfig.enableMonthSelector"
+      [label]="navLabel"
+      [showGoToCurrent]="_shouldShowCurrent"
+      [showLeftNav]="showLeftNav"
+      [showRightNav]="showRightNav"
+      [theme]="theme">
+  </dp-calendar-nav>
+
+  <div [ngClass]="{'dp-hide-near-month': !componentConfig.showNearMonthDays}"
+       class="dp-calendar-wrapper">
+    <div class="dp-weekdays">
+      <span *ngFor="let weekday of weekdays"
+            [innerText]="getWeekdayName(weekday)"
+            class="dp-calendar-weekday">
+      </span>
+    </div>
+    <div *ngFor="let week of weeks" class="dp-calendar-week">
+      <span *ngIf="componentConfig.showWeekNumbers"
+            [innerText]="week[0].date.isoWeek()"
+            class="dp-week-number">
+      </span>
+      <button (click)="dayClicked(day)"
+              *ngFor="let day of week"
+              [attr.data-date]="day.date.format(componentConfig.format)"
+              [disabled]="day.disabled"
+              [innerText]="getDayBtnText(day)"
+              [ngClass]="getDayBtnCssClass(day)"
+              class="dp-calendar-day"
+              type="button">
+      </button>
+    </div>
+  </div>
+</div>
+
+<dp-month-calendar
+    (onLeftNav)="onMonthCalendarLeftClick($event)"
+    (onLeftSecondaryNav)="onMonthCalendarSecondaryLeftClick($event)"
+    (onNavHeaderBtnClick)="toggleCalendarMode(CalendarMode.Day)"
+    (onRightNav)="onMonthCalendarRightClick($event)"
+    (onRightSecondaryNav)="onMonthCalendarSecondaryRightClick($event)"
+    (onSelect)="monthSelected($event)"
+    *ngIf="currentCalendarMode ===  CalendarMode.Month"
+    [config]="monthCalendarConfig"
+    [displayDate]="_currentDateView"
+    [ngModel]="_selected"
+    [theme]="theme">
+</dp-month-calendar>
