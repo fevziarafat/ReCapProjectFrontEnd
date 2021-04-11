@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Car Add</h5></div>
+      <div class="card-body">
+        <form [formGroup]="addCarForm">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="carName">Car Name</label>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="carName"
+                    formControlName="carName"
+                    placeholder="Car Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="modelYear">Araç Modeli</label>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="modelYear"
+                    formControlName="modelYear"
+                    placeholder="Araç Modeli Giriniz"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label for="dailyPrice">Araç Günlük Ücreti</label>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="dailyPrice"
+                    formControlName="dailyPrice"
+                    placeholder="Araç Günlük Ücreti Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="description">Araç Ayrıntısı</label>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="description"
+                    formControlName="description"
+                    placeholder="Araç Ayrıntısı Giriniz"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label for="description">Araç Markası</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <select formControlName="brandId">
+                    <option *ngFor="let brand of brands" [ngValue]="brand.id">
+                      {{ brand.brandName }}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="description">Renk</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <select formControlName="colorId">
+                    <option *ngFor="let color of colors" [ngValue]="color.id">
+                      {{ color.colorName }}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-3">
+                <button class="btn btn-primary" (click)="add()">Car Add</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -40,11 +40,21 @@ export class CarComponent implements OnInit {
         this.listCarByColor(params.colorName);
       } else if (params.carId) {
         this.getCarListWithImage(params.carId);
-      } else {
+      // } else if (params.getAllCars) {
+      //   this.getAllCars();
+      // } else {
         this.getCarList();
       }
     });
   }
+  // tslint:disable-next-line:typedef
+  // getAllCars() {
+  //   return this.carService.getAllCars().subscribe((response) => {
+
+  //     this.carList = response.data;
+  //   });
+  //   throw new Error('Method not implemented.');
+  // }
   // tslint:disable-next-line:typedef
   getCarList() {
     this.carService.getCarList().subscribe((response) => {

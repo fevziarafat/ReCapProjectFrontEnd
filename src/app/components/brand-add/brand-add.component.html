@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Brand Add</h5></div>
+      <div class="card-body">
+        <form [formGroup]="brandAddForm">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-2">
+                <label for="brandName">Brand Name</label>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="brandName"
+                    formControlName="brandName"
+                    placeholder="Brand Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" (click)="add()">
+                  Brand Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

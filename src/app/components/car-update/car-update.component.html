@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Car Update</h5></div>
+      <div class="card-body">
+        <form [formGroup]="carForm">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-2">
+                <label for="carName">Car Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="carName_"
+                    formControlName="carName"
+                    placeholder="Car Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="brandId">brandId Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="brandId"
+                    formControlName="brandId"
+                    placeholder="brandId Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="colorId">colorId Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="colorId"
+                    formControlName="colorId"
+                    placeholder="colorId Name Giriniz"
+                  />
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <label for="modelYear">modelYear Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="modelYear"
+                    formControlName="modelYear"
+                    placeholder="modelYear Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="dailyPrice">dailyPrice Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="dailyPrice"
+                    formControlName="dailyPrice"
+                    placeholder="dailyPrice Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="description">description Name</label>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="description"
+                    formControlName="description"
+                    placeholder="description Name Giriniz"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" (click)="carUpdate()">
+                  Car Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

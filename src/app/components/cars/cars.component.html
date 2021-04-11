@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Araba Adı</th>
+      <th scope="col">Marka Id</th>
+      <th scope="col">Renk Id</th>
+      <th scope="col">Model</th>
+      <th scope="col">Kiralama Ücreti</th>
+      <th scope="col">Kiralama Ücreti Kasko dahil</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars | filterPipe: filterText">
+      <td>{{ car.carName }}</td>
+      <td>{{ car.brandId }}</td>
+      <td>{{ car.colorId }}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice | currency }}</td>
+      <td>{{ car.dailyPrice | varAdded: 10 | currency }}</td>
+      <td>
+        <a
+          routerLink="/carUpdate/{{ car }}"
+          class="link-primary"
+          >Güncelle</a
+        >
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

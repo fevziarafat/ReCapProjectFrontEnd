@@ -1,10 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ViewChild } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AComponent } from './components/a/a.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandComponent } from './components/brand/brand.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarAdminComponent } from './components/car-admin/car-admin.component';
 import { CarDetailsWithImageComponent } from './components/car-details-with-image/car-details-with-image.component';
 import { CarImageComponent } from './components/car-image/car-image.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
 import { CarComponent } from './components/car/car.component';
+import { CarsComponent } from './components/cars/cars.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
 import { RentalComponent } from './components/rental/rental.component';
-
 
 const routes: Routes = [
   { path: '', component: CarComponent },
@@ -25,6 +32,39 @@ const routes: Routes = [
   {
     path: 'creditcarts/payment/:creditCart',
     component: CarDetailsWithImageComponent,
+  },
+  {
+    path: 'brands/add',
+    component: BrandAddComponent,
+  },
+  {
+    path: 'colors/add',
+    component: ColorAddComponent,
+  },
+  {
+    path: 'cars/add',
+    component: CarAddComponent,
+
+  },
+  {
+    path: 'carUpdate/:car',
+    component: CarUpdateComponent,
+
+  },
+  {
+    path: 'carsAll',
+    component: CarsComponent,
+
+  },
+  {
+    path: 'carAdmin',
+    component: CarAdminComponent,
+
+  },
+  {
+    path: 'cars/Update/:car',
+    component: CarAdminComponent,
+
   },
 ];
 
