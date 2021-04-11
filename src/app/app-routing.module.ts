@@ -11,7 +11,9 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
 import { CarComponent } from './components/car/car.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
+import { LoginComponent } from './components/login/login.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   { path: '', component: CarComponent },
@@ -44,27 +46,27 @@ const routes: Routes = [
   {
     path: 'cars/add',
     component: CarAddComponent,
-
   },
   {
     path: 'carUpdate/:car',
     component: CarUpdateComponent,
-
   },
   {
     path: 'carsAll',
     component: CarsComponent,
-
   },
   {
     path: 'carAdmin',
     component: CarAdminComponent,
-
+    canActivate: [LoginGuard],
   },
   {
     path: 'cars/Update/:car',
     component: CarAdminComponent,
-
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ];
 

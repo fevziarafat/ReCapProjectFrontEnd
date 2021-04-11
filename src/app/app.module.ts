@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
@@ -89,6 +89,8 @@ import { AComponent } from './components/a/a.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { CarUpdateComponent } from './components/car-update/car-update.component';
 import { CarAdminComponent } from './components/car-admin/car-admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -115,6 +117,7 @@ import { CarAdminComponent } from './components/car-admin/car-admin.component';
     CarsComponent,
     CarUpdateComponent,
     CarAdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -185,7 +188,15 @@ import { CarAdminComponent } from './components/car-admin/car-admin.component';
     PortalModule,
     ScrollingModule,
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

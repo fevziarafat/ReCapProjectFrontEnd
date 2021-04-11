@@ -8,7 +8,7 @@ import { ListResponseModel } from '../models/listResponseModel';
   providedIn: 'root',
 })
 export class CustomerService {
-  apiUrl = 'https://localhost:5001/api/';
+  apiUrl = 'https://localhost:44356/api/';
   constructor(private httpClient: HttpClient) {}
   getCustomers(): Observable<ListResponseModel<Customer>> {
     const newPath = this.apiUrl + 'customers/GetAll';
